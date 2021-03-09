@@ -30,7 +30,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Override
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
-				.mvcMatchers("/api/wedding/guest/**", "/api/wedding/guests").hasAuthority("view:admin")
+				.mvcMatchers("/api/wedding/guests").hasAuthority("SCOPE_view:admin")
 				.mvcMatchers("/api/**").authenticated()
 				.and().cors()
 				.and().oauth2ResourceServer().jwt();
@@ -43,8 +43,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
         indeed intended for our app. Adding our own validator is easy to do:
         */
 
-		NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder)
-				JwtDecoders.fromOidcIssuerLocation(issuer);
+		NimbusJwtDecoder jwtDecoder = (NimbusJwtDecoder) JwtDecoders.fromOidcIssuerLocation(issuer);
 
 		OAuth2TokenValidator<Jwt> audienceValidator = new AudienceValidator(audience);
 		OAuth2TokenValidator<Jwt> withIssuer = JwtValidators.createDefaultWithIssuer(issuer);
