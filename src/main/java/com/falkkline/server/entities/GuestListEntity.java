@@ -1,17 +1,12 @@
 package com.falkkline.server.entities;
 
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 import javax.persistence.*;
 import java.sql.Timestamp;
-import java.util.Objects;
 
 @Entity
-@Getter
-@Setter
-@ToString
+@Data
 @Table(name = "guest_list", schema = "public", catalog = "dap9htsjppm79q")
 public class GuestListEntity {
 
@@ -68,16 +63,11 @@ public class GuestListEntity {
 	@Column(name = "attending")
 	private Boolean attending;
 
-	@Override
-	public boolean equals(Object o) {
-		if (this == o) return true;
-		if (o == null || getClass() != o.getClass()) return false;
-		GuestListEntity that = (GuestListEntity) o;
-		return Objects.equals(id, that.id) && Objects.equals(firstName, that.firstName) && Objects.equals(lastName, that.lastName) && Objects.equals(address1, that.address1) && Objects.equals(address2, that.address2) && Objects.equals(city, that.city) && Objects.equals(state, that.state) && Objects.equals(zip, that.zip) && Objects.equals(phone, that.phone) && Objects.equals(email, that.email) && Objects.equals(guestRole, that.guestRole) && Objects.equals(reservedDate, that.reservedDate) && Objects.equals(attending, that.attending);
-	}
+	@Basic
+	@Column(name = "parent_id")
+	private Integer parentId;
 
-	@Override
-	public int hashCode() {
-		return Objects.hash(id, firstName, lastName, address1, address2, city, state, zip, phone, email, guestRole, reservedDate, attending);
-	}
+	@Basic
+	@Column(name = "invite_code")
+	private String inviteCode;
 }
