@@ -31,9 +31,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	public void configure(HttpSecurity http) throws Exception {
 		http.authorizeRequests()
 				.mvcMatchers("/api/wedding/guests").hasAuthority("SCOPE_view:admin")
-				.mvcMatchers("/api/**").authenticated()
+				.mvcMatchers("/api/wedding/addGuest").hasAuthority("SCOPE_view:admin")
 				.and().cors()
 				.and().oauth2ResourceServer().jwt();
+		http.csrf().disable();
 	}
 
 	@Bean

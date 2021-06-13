@@ -65,9 +65,17 @@ public class GuestListEntity {
 
 	@Basic
 	@Column(name = "parent_id")
-	private Integer parentId;
+	private Long parentId;
 
 	@Basic
 	@Column(name = "invite_code")
 	private String inviteCode;
+
+	@Basic
+	@Column(name = "allowed_plus_ones")
+	private Integer allowedPlusOnes;
+
+	@Basic
+	@Column(name = "age_over_three")
+	private Boolean ageOverThree;
 }
