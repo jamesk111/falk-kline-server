@@ -78,4 +78,8 @@ public class GuestListEntity {
 	@Basic
 	@Column(name = "age_over_three")
 	private Boolean ageOverThree;
+
+	@Basic
+	@Column(name = "guest_count")
+	private Integer guestCount;
 }
