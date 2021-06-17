@@ -32,6 +32,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 		http.authorizeRequests()
 				.mvcMatchers("/api/wedding/guests").hasAuthority("SCOPE_view:admin")
 				.mvcMatchers("/api/wedding/addGuest").hasAuthority("SCOPE_view:admin")
+//				.mvcMatchers("/api/wedding/guests").permitAll()
 				.and().cors()
 				.and().oauth2ResourceServer().jwt();
 		http.csrf().disable();
